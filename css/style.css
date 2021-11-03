@@ -1,0 +1,62 @@
+
+body{
+  background-color: #7FFED4;
+}
+
+header{
+  width: 100%;
+  height: 100px;
+  background-color: white;
+}
+
+.logo img{
+  width: 50px;
+}
+
+footer{
+  height: 80px;
+  background-color: #FDFEFE;
+  width: 100%;
+}
+
+.main-div{
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 180px);
+  justify-content: center;
+  align-items: center;
+}
+
+.mds-container{
+  width: 500px;
+  height: 500px;
+}
+
+.square{
+  float: left;
+  border: 3px solid black;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.easy{
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+
+.medium{
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+
+.hard{
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+}
+
+.active{
+  background-color: turquoise;
+}
+
