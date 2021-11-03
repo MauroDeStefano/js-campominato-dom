@@ -4,18 +4,21 @@ const container = document.querySelector(".mds-container");
 let numberList = [];
 let counter = 0;
 
+let comparator = true;
+
 const btn = document.querySelector("#inizia");
 const choice = document.querySelector("#difficolta");
 const none = document.querySelector("#cancel");
 let bombs = [];
 
 
-// container.innerHTML = "Seleziona il livello di difficoltà e genera la griglia";
+container.innerHTML = "Seleziona il livello di difficoltà e genera la griglia";
 
 
 btn.addEventListener("click", function(){
+  comparator = true;
   container.innerHTML = "";
-
+  counter = 0;
   alert(choice.value);
 
   console.log(choice.value);
@@ -30,23 +33,26 @@ function init(difficult){
   bombs = generateBombs(bombs);
 
   console.log("questo è il mio array", bombs);
+
   for (let i = 0; i < difficult; i++){
 
     const square = createSquare(container);
     
     square.innerHTML = i + 1;
-    let comparator = true;
-    if (comparator === true){
-
-      square.addEventListener("click", function(){
+    
+    
+      
+    square.addEventListener("click", function(){
         
-        
+      if(comparator == true){    
 
         let compare = parseInt(this.textContent);
       
         if (bombs.includes(compare)){
 
           comparator = false;
+          
+          console.log(comparator);
           
           let selection = document.querySelectorAll(".square");
 
@@ -66,18 +72,19 @@ function init(difficult){
           this.classList.add("red");
            
 
-          container.append("Hai perso, hai provato "+ counter + " volte.")
+          return container.append("Hai perso, hai provato "+ counter + " volte.");
+          
         }else{
           counter++;
           this.classList.add("active");
         }
 
-        console.log(this);
-        console.log(this.textContent);
-        console.log();
-      
-      });
-    } 
+        // console.log(this);
+        // console.log(this.textContent);
+        // console.log();
+      }
+    });
+     
   }
   
 }
