@@ -1,8 +1,8 @@
 
 
-
 const container = document.querySelector(".mds-container");
 let numberList = [];
+let counter = 0;
 
 const btn = document.querySelector("#inizia");
 const choice = document.querySelector("#difficolta");
@@ -26,26 +26,58 @@ btn.addEventListener("click", function(){
 
 function init(difficult){
 
+  bombs = [];
   bombs = generateBombs(bombs);
 
+  console.log("questo è il mio array", bombs);
   for (let i = 0; i < difficult; i++){
 
     const square = createSquare(container);
-
+    
     square.innerHTML = i + 1;
-    
-    if(square.innerHTML.includes(bombs)){
-        square.addClass.add("red");
-        console.log("inclkudes");
-      }
+    let comparator = true;
+    if (comparator === true){
 
-    square.addEventListener("click", function(){
-    
-      this.classList.add("active");
+      square.addEventListener("click", function(){
+        
+        
 
-    
-    });
+        let compare = parseInt(this.textContent);
+      
+        if (bombs.includes(compare)){
 
+          comparator = false;
+          
+          let selection = document.querySelectorAll(".square");
+
+          for (let ii = 0; ii < selection.length; ii++) {
+          // console.log(selection[ii]);
+          let compareArray = parseInt(selection[ii].textContent);
+          if(bombs.includes(compareArray)){
+            selection[ii].classList.add("red");
+          }else{
+            selection[ii].classList.add("active");
+          }
+            console.log(selection[ii].textContent); 
+            console.log(ii);
+          }
+          
+        
+          this.classList.add("red");
+           
+
+          container.append("Hai perso, hai provato "+ counter + " volte.")
+        }else{
+          counter++;
+          this.classList.add("active");
+        }
+
+        console.log(this);
+        console.log(this.textContent);
+        console.log();
+      
+      });
+    } 
   }
   
 }
@@ -69,29 +101,23 @@ function addClassPerDifficult(difficult, addClass){
   if (difficult.value == "facile"){
     difficult = 100;
     addClass.classList.add("easy");
-
+    
     
   } else if (difficult.value == "medio"){
     difficult = 81;
-
-
+   
+    addClass.classList.add("medium");
   }else if (difficult.value == "difficile"){
     difficult = 49;
-
-
+    
+    addClass.classList.add("hard");
   }
   return difficult;
 }
 
-// clearInterval.addEventListener("click", handleClickCell);
 
-// function handleClickCell(event){
-//   let verification = event.target.innerText;
-// };
 
-//ARRAY DI 16 bombe, da creare a parte e se è una bomba classe col colore rosso, break del programma e 
-
-function generateBombs(bombs){
+function generateBombs(array){
      
   let selector;
 
@@ -105,19 +131,19 @@ function generateBombs(bombs){
 
   for (i = 0; i < 16; i++){
     
-
+    console.log("selector",selector);
 
     let number = generateRandomInt(selector, 1);
 
-    if(bombs.includes(number)){
+    if(array.includes(number)){
       i--;
-      console.log("bombe", i);
+
     }else {
-      bombs.push(number);
-      console.log("bombe", bombs);
+      array.push(number);
+ 
     }
   }
-  return bombs;
+  return array;
 }
 
 function generateRandomInt(max, min){
