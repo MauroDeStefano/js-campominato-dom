@@ -35,10 +35,11 @@ footer{
 .square{
   float: left;
   border: 3px solid black;
-  background-color: tomato;
+  background-color:lightblue;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .easy{
